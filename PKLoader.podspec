@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "PKLoader"
-  s.version      = "0.0.4"
+  s.version      = "0.0.5"
   s.summary      = "A Swift based helper class that will provide the loader for your application, on a view or on the window."
 
   s.description  = <<-DESC
