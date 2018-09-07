@@ -75,7 +75,7 @@ To change the default configuration of the loader just change the values of  `PK
 
 1) `indicatorPadding` used to give the padding for the indicator animation.  Default: `UIEdgeInsets(top: 5.0, left: 5.0, bottom: 5.0, right: 5.0)`
 
-1) `shouldMakeRound` decides weather make the passed view circular or not.  Default: `true`
+1) `shouldMakeRound` decides weather make the passed view circular or not.  Default: `false`
 
 
 ## Licence

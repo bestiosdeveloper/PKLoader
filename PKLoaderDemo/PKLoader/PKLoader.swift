@@ -118,16 +118,16 @@ public final class PKLoader {
         }
         else {
             self.parantView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: PKLoaderSettings.shared.backgroundSize.width, height: PKLoaderSettings.shared.backgroundSize.height))
-            if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let window = appDelegate.window {
+            if let appDelegate = UIApplication.shared.delegate, let window = appDelegate.window {
                 self.isOnWindow = true
                 self.parantView?.backgroundColor = PKLoaderSettings.shared.backgroundColor
                 self.parantView?.layer.cornerRadius = PKLoaderSettings.shared.cornerRadius
                 self.parantView?.layer.masksToBounds = true
-                self.parantView?.center = window.center
+                self.parantView?.center = window?.center ?? .zero
                 
                 self.transparentView.backgroundColor = UIColor.black.withAlphaComponent(0.3)
-                window.addSubview(self.transparentView)
-                window.addSubview(self.parantView!)
+                window?.addSubview(self.transparentView)
+                window?.addSubview(self.parantView!)
             }
         }
     }
