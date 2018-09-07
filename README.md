@@ -3,7 +3,7 @@
 [![CocoaPods](https://img.shields.io/cocoapods/p/FaveButton.svg)]()
 [![codebeat badge](https://codebeat.co/badges/580517f8-efc8-4d20-89aa-900531610144)]()
 
-Floating button that will float over the window or specified view
+A Swift based helper class that will provide the loader for your application, on a view or on the window.
 
 
 ![preview](https://github.com/kumarpramod017/PKLoader/blob/master/PKLoader.gif)
