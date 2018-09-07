@@ -49,15 +49,16 @@ public final class PKLoader {
     //MARK:- Properties
     //MARK:- Private
     private var transparentView: UIView = UIView(frame: UIScreen.main.bounds)
-    private var parentPreviousRect = CGRect.zero
+    private var parentPreviousRect: CGRect = .zero
+    private var parantOriginalView: UIView?
     private var isOnWindow = false
-    private var parantView: UIView? {
+    private var parantView: UIView?{
         didSet{
             if let parent = self.parantView {
-                self.parentPreviousRect = parent.frame
+                parentPreviousRect = parent.frame
             }
             else {
-                self.parentPreviousRect = CGRect.zero
+                parentPreviousRect = CGRect.zero
             }
         }
     }
@@ -74,7 +75,7 @@ public final class PKLoader {
             return obj.titleLabel?.textColor ?? PKLoaderSettings.shared.indicatorColor
         }
         else {
-           return PKLoaderSettings.shared.indicatorColor
+            return PKLoaderSettings.shared.indicatorColor
         }
     }
     
@@ -87,17 +88,17 @@ public final class PKLoader {
         guard let parent = self.parantView else {return CGRect.zero}
         var newX: CGFloat = 0.0, newY: CGFloat = 0.0, size: CGFloat = 0.0
         
-        if self.parentPreviousRect.size.height > self.parentPreviousRect.size.width {
-            size = self.parentPreviousRect.size.width
+        if parentPreviousRect.size.height > parentPreviousRect.size.width {
+            size = parentPreviousRect.size.width
             //change y, x will remain
-            newX = self.parentPreviousRect.origin.x
+            newX = parentPreviousRect.origin.x
             newY = (UIScreen.main.bounds.size.height - size) / 2.0
         }
         else {
-            size = self.parentPreviousRect.size.height
+            size = parentPreviousRect.size.height
             //change x, y will remain
             newX = (UIScreen.main.bounds.size.width - size) / 2.0
-            newY = self.parentPreviousRect.origin.y
+            newY = parentPreviousRect.origin.y
         }
         
         if PKLoaderSettings.shared.shouldMakeRound {
@@ -114,6 +115,7 @@ public final class PKLoader {
     private func setupParentView(view: UIView? = nil) {
         if let parent = view {
             self.parantView = parent
+            self.parantOriginalView = parent
             self.isOnWindow = false
         }
         else {
@@ -163,15 +165,10 @@ public final class PKLoader {
             }
         }
     }
-
+    
     private func stopLoading() {
         guard let parent = self.parantView else {return}
         guard let loader = self.loaderView else {return}
-
-        if PKLoaderSettings.shared.shouldMakeRound {
-            parent.layer.cornerRadius = 0.0
-            parent.layer.masksToBounds = true
-        }
         
         UIView.animate(withDuration: 0.3, animations: {
             parent.frame = self.parentPreviousRect
@@ -191,7 +188,7 @@ public final class PKLoader {
         self.stopAnimating()
         self.setupParentView(view: view)
         self.setupLoaderView()
-
+        
         if !self.isOnWindow {
             self.startLoading()
         }
@@ -200,7 +197,6 @@ public final class PKLoader {
     public func stopAnimating() {
         if !self.isOnWindow {
             self.stopLoading()
-            self.parentPreviousRect = CGRect.zero
         }
         
         self.transparentView.removeFromSuperview()
@@ -210,7 +206,14 @@ public final class PKLoader {
         self.loaderView = nil
         
         guard let parent = self.parantView else {return}
-        if self.isOnWindow {parent.removeFromSuperview()}
+        if self.isOnWindow {
+            parent.removeFromSuperview()
+        }
+        else {
+            parent.layer.cornerRadius = self.parantOriginalView?.layer.cornerRadius ?? 0.0
+            parent.layer.borderWidth = self.parantOriginalView?.layer.borderWidth ?? 0.0
+            parent.layer.borderColor = self.parantOriginalView?.layer.borderColor ?? UIColor.clear.cgColor
+        }
         self.parantView = nil
     }
 }

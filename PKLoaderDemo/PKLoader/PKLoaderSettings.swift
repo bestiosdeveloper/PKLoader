@@ -53,6 +53,6 @@ public final class PKLoaderSettings {
     /* `indicatorPadding`
      * Description: used to make circle for superView of the indicator animation.
      */
-    public var shouldMakeRound: Bool = false
+    public var shouldMakeRound: Bool = true
 }
 
