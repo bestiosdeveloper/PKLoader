@@ -17,7 +17,7 @@ This framework will help you to show the diffrent type of loader in your applica
                    DESC
 
   s.homepage     = "https://github.com/kumarpramod017/PKLoader"
-  s.screenshots  = "https://github.com/kumarpramod017/PKLoader/blob/master/PKLoader.gif"
+  s.screenshots  = "https://github.com/kumarpramod017/PKLoader/PKLoader.gif"
 
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
 
