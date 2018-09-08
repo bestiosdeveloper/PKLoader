@@ -50,15 +50,23 @@ public final class PKLoader {
     //MARK:- Private
     private var transparentView: UIView = UIView(frame: UIScreen.main.bounds)
     private var parentPreviousRect: CGRect = .zero
-    private var parantOriginalView: UIView?
+    private var parentPreviousCornerRadius: CGFloat = 0
+    private var parentPreviousBorderWidth: CGFloat = 0
+    private var parentPreviousBorderColor: CGColor = UIColor.clear.cgColor
     private var isOnWindow = false
     private var parantView: UIView?{
         didSet{
             if let parent = self.parantView {
                 parentPreviousRect = parent.frame
+                parentPreviousCornerRadius = parent.layer.cornerRadius
+                parentPreviousBorderWidth = parent.layer.borderWidth
+                parentPreviousBorderColor = parent.layer.borderColor ?? UIColor.clear.cgColor
             }
             else {
                 parentPreviousRect = CGRect.zero
+                parentPreviousCornerRadius = 0
+                parentPreviousBorderWidth = 0
+                parentPreviousBorderColor = UIColor.clear.cgColor
             }
         }
     }
@@ -101,7 +109,7 @@ public final class PKLoader {
             newY = parentPreviousRect.origin.y
         }
         
-        if PKLoaderSettings.shared.shouldMakeRound {
+        if PKLoaderSettings.shared.shouldMakeRound, !self.isOnWindow {
             parent.layer.cornerRadius = size/2.0
             parent.layer.masksToBounds = true
         }
@@ -115,7 +123,6 @@ public final class PKLoader {
     private func setupParentView(view: UIView? = nil) {
         if let parent = view {
             self.parantView = parent
-            self.parantOriginalView = parent
             self.isOnWindow = false
         }
         else {
@@ -210,9 +217,9 @@ public final class PKLoader {
             parent.removeFromSuperview()
         }
         else {
-            parent.layer.cornerRadius = self.parantOriginalView?.layer.cornerRadius ?? 0.0
-            parent.layer.borderWidth = self.parantOriginalView?.layer.borderWidth ?? 0.0
-            parent.layer.borderColor = self.parantOriginalView?.layer.borderColor ?? UIColor.clear.cgColor
+            parent.layer.cornerRadius = self.parentPreviousCornerRadius
+            parent.layer.borderWidth = self.parentPreviousBorderWidth
+            parent.layer.borderColor = self.parentPreviousBorderColor
         }
         self.parantView = nil
     }
