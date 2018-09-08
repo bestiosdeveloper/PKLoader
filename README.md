@@ -1,7 +1,7 @@
 # PKLoader
 
-[![CocoaPods](https://img.shields.io/cocoapods/p/FaveButton.svg)]()
-[![codebeat badge](https://codebeat.co/badges/580517f8-efc8-4d20-89aa-900531610144)]()
+[![CocoaPods](https://img.shields.io/cocoapods/p/FaveButton.svg)](https://cocoapods.org/pods/PKLoader)
+[![codebeat badge](https://codebeat.co/badges/580517f8-efc8-4d20-89aa-900531610144)](https://codebeat.co/projects/github-com-kumarpramod017-pkloader-master)
 
 A Swift based helper class that will provide the loader for your application, on a view or on the window.
 
