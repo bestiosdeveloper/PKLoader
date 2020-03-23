@@ -10,7 +10,7 @@ import UIKit
 
 public final class PKActivityIndicatorAnimation: PKIndicatorAnimationDelegate {
     public func setUpAnimation(in view: UIView, size: CGSize, color: UIColor) {
-        let activity = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+        let activity = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.gray)
         activity.color = color
         activity.startAnimating()
         activity.center = view.center
