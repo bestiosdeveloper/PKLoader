@@ -16,8 +16,8 @@ Pod::Spec.new do |s|
 This framework will help you to show the diffrent type of loader in your application while you performing any type of task, like backgound taks, rest api, any calculation etc.
                    DESC
 
-  s.homepage     = "https://github.com/kumarpramod017/PKLoader"
-  s.screenshots  = "https://raw.githubusercontent.com/kumarpramod017/PKLoader/master/PKLoader.gif"
+  s.homepage     = "https://github.com/bestiosdeveloper/PKLoader"
+  s.screenshots  = "https://raw.githubusercontent.com/bestiosdeveloper/PKLoader/master/PKLoader.gif"
 
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
 
@@ -26,7 +26,7 @@ This framework will help you to show the diffrent type of loader in your applica
 
   s.ios.deployment_target = "10.0"
 
-  s.source       = { :git => "https://github.com/kumarpramod017/PKLoader.git", :tag => "#{s.version.to_s}" }
+  s.source       = { :git => "https://github.com/bestiosdeveloper/PKLoader.git", :tag => "#{s.version.to_s}" }
   s.source_files  = 'PKLoaderDemo/PKLoader/*.swift'
 
 end
